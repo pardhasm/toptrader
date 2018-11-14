@@ -23,11 +23,15 @@ public class AuthController {
     public AuthController(BrokerService brokerService) {this.brokerService = brokerService;}
 
     @GetMapping("/login")
+    //TODO: Authorize,Authenticate,Create session,Redirect. Refer https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
+    //TODO: We can also use auth0 (check https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc).
+    //TODO: Compare both approaches and decide on the best (https://auth0.com/why-auth0)
     public RedirectView redirectWithUsingRedirectView(
             RedirectAttributes attributes) {
         return new RedirectView(brokerService.loginUrl());
     }
 
+    //TODO: Initialize per user session
     @GetMapping(value = "/authorise",produces = "application/json")
     public void authenticate(@RequestParam("request_token") String requestToken) throws KiteException, IOException {
         brokerService.initialiseSession(requestToken);
