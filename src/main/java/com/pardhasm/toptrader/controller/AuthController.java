@@ -1,19 +1,20 @@
 package com.pardhasm.toptrader.controller;
 
 
-import com.pardhasm.toptrader.service.BrokerService;
-import com.zerodhatech.kiteconnect.kitehttp.exceptions.KiteException;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.IOException;
+import com.pardhasm.toptrader.service.BrokerService;
+import com.zerodhatech.kiteconnect.kitehttp.exceptions.KiteException;
 
-@Controller
+@RestController
 @RequestMapping("/")
 public class AuthController {
 
@@ -22,7 +23,7 @@ public class AuthController {
     @Autowired
     public AuthController(BrokerService brokerService) {this.brokerService = brokerService;}
 
-    @GetMapping("/login")
+    @GetMapping("/login2")
     //TODO: Authorize,Authenticate,Create session,Redirect. Refer https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
     //TODO: We can also use auth0 (check https://auth0.com/docs/quickstart/webapp/java-spring-security-mvc).
     //TODO: Compare both approaches and decide on the best (https://auth0.com/why-auth0)
@@ -36,8 +37,10 @@ public class AuthController {
     public void authenticate(@RequestParam("request_token") String requestToken) throws KiteException, IOException {
         brokerService.initialiseSession(requestToken);
     }
-
-
-
+    
+    @GetMapping(value="/redirect")
+    public String successAuthentication(){
+    	return "success";
+    }
 
 }

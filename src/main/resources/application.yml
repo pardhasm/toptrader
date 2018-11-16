@@ -2,16 +2,11 @@ userId: userId
 apiKey: apiKey
 apiSecret: secret
 
-security:
-  oauth2:
-    resource:
-      id: https://user-acess.auth0.com/api/v2/
-      jwk:
-        keySetUri: https://user-acess.auth0.com/.well-known/jwks.json
-
-auth0:
-  domain: user-acess.auth0.com
-  clientId: eA0JYQX9VH938SXCGJDP9mwLWGjBl4Ew
-
 server:
   port: 8090
+  
+com:
+  auth0:
+    domain: user-acess.auth0.com
+    clientId: Fv77Jp1j2mi19_5dsb3eLa87v8-HQOFX
+    clientSecret: xspSkAVMqs3O4Wn2Ro2cYN25a3cFtjkfnYVsrUMEAafRkeFE8rQJ2AZ56afJbMoZ
