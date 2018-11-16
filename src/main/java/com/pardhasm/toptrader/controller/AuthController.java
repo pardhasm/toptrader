@@ -38,6 +38,7 @@ public class AuthController {
         brokerService.initialiseSession(requestToken);
     }
     
+    //Redirect endpoint
     @GetMapping(value="/redirect")
     public String successAuthentication(){
     	return "success";
